@@ -8,7 +8,7 @@ var no;
 var https = require('https');
 var dict = {};
 var he = require('he');
-var ssval= require('ssml-validator');
+var ssval = require('ssml-validator');
 var name_arr = [];
 var repeat = '';
 var a;
@@ -30,7 +30,7 @@ app.intent('NoOfQuestions/ShowingCategory', (conv, { number }) => {
       NoOfQuestions: true,
     };
     conv.contexts.set('sessions', 30, parameters);
-    console.log("SESSIONS",conv.contexts.input.sessions );
+    console.log("SESSIONS", conv.contexts.input.sessions);
     console.log("DATA", data);
     a = 0;
     str = "Select one category";
@@ -44,15 +44,15 @@ app.intent('NoOfQuestions/ShowingCategory', (conv, { number }) => {
     // console.log("STRING", str);
     // console.log("NAME ARRAY", name_arr);
     // console.log("DICT", dict);
-    str +="Say like first or second to select a category";
-    str=ssval.correct(str);
+    str += "Say like first or second to select a category";
+    str = ssval.correct(str);
     conv.ask('<speak>' + str + '</speak>');
     repeat = '<speak>' + str + '</speak>';
     a = 3;
   }).catch((error) => {
     let parameters = { // Custom parameters to pass with context
       error: true,
-    }; 
+    };
     conv.contexts.set('sessions', 30, parameters);
     console.log("----ERROR----", error);
     repeat = "Sorry, an error has occurred . Do you want to cancel this wave and start a new session";
@@ -61,30 +61,30 @@ app.intent('NoOfQuestions/ShowingCategory', (conv, { number }) => {
 });
 
 app.intent('YesIntent', (conv) => {
-  if ((conv.contexts.input.sessions.parameters.ShowingMoreQuesYESNo===true)){
+  if ((conv.contexts.input.sessions.parameters.ShowingMoreQuesYESNo === true)) {
     let parameters = { // Custom parameters to pass with context
       ShowingMoreQuesYESNo: false,
     };
     conv.contexts.set('sessions', 30, parameters);
-    console.log("SESSIONS",conv.contexts.input.sessions );
+    console.log("SESSIONS", conv.contexts.input.sessions);
     conv.contexts.delete('sessions');
-    b=1;
-    c=0;
-    repeat="How many questions do you want?";
+    b = 1;
+    c = 0;
+    repeat = "How many questions do you want?";
     return conv.ask("How many questions do you want?");
-      }
-  else if ((conv.contexts.input.sessions.parameters.error===true)){
-    console.log("SESSIONS",conv.contexts.input.sessions );
+  }
+  else if ((conv.contexts.input.sessions.parameters.error === true)) {
+    console.log("SESSIONS", conv.contexts.input.sessions);
     conv.contexts.delete('sessions');
-    repeat="Welcome to Knowledge Quest . How many questions do you want?";
+    repeat = "Welcome to Knowledge Quest . How many questions do you want?";
     return conv.ask("Welcome to Knowledge Quest . How many questions do you want?");
   }
   else
-  return conv.ask("Please give a correct response");
+    return conv.ask("Please give a correct response");
 });
 
 app.intent('NoIntent', (conv) => {
-  if ((conv.contexts.input.sessions.parameters.ShowingMoreQuesYESNo===true)){
+  if ((conv.contexts.input.sessions.parameters.ShowingMoreQuesYESNo === true)) {
     let parameters = { // Custom parameters to pass with context
       ShowingMoreQuesYESNo: false,
     };
@@ -92,8 +92,8 @@ app.intent('NoIntent', (conv) => {
     conv.contexts.delete('sessions');
     return conv.close("Good bye . have a nice day");
   }
-  else   
-  return conv.ask("Please give a correct response");
+  else
+    return conv.ask("Please give a correct response");
 
 });
 
@@ -122,8 +122,8 @@ app.intent('MoreIntent', (conv) => {
         str += "Say more to listen to more categories";
       }
       repeat = str;
-      str=ssval.correct(str);
-      console.log("STR",str);
+      str = ssval.correct(str);
+      console.log("STR", str);
       repeat = '<speak>' + repeat + '</speak>';
       return conv.ask('<speak>' + str + '</speak>');
     }
@@ -139,19 +139,19 @@ app.intent('SelectingCategory/ShowingDifficulty', (conv, { ordinal }) => {
     id = dict[name_arr[ordinal - 1]];
     console.log("ID", id);
     return getIDQues(id).then((data) => {
-      if (no <= data.category_question_count.total_question_count){
+      if (no <= data.category_question_count.total_question_count) {
         let parameters = { // Custom parameters to pass with context
           SelectingCategory: true,
           NoOfQuestions: false,
           Moreintent: false
         };
         conv.contexts.set('sessions', 30, parameters);
-        repeat="Select Difficulty level : Easy, Medium, or Hard";
+        repeat = "Select Difficulty level : Easy, Medium, or Hard";
         return conv.ask("Select Difficulty level : Easy, Medium, or Hard");
       }
       else {
-        repeat=`Sorry, we don't have that much questions in that category .  We have ${data.category_question_count.total_easy_question_count} in easy . ${data.category_question_count.total_easy_question_count} in medium . ${data.category_question_count.total_easy_question_count} in hard . Now, how many questions do you want`;
-        return conv.ask(`Sorry, we don't have that much questions in that category .  Maximum questions we have on that category is ${data.category_question_count.total_question_count} . Now, how many questions do you want`);
+        repeat = `Sorry, we don't have that much questions in that category .  We have ${data.category_question_count.total_easy_question_count} in easy . ${data.category_question_count.total_medium_question_count} in medium . ${data.category_question_count.total_hard_question_count} in hard . Now, how many questions do you want`;
+        return conv.ask(`Sorry, we don't have that much questions in that category .  We have ${data.category_question_count.total_easy_question_count} in easy . ${data.category_question_count.total_medium_question_count} in medium . ${data.category_question_count.total_hard_question_count} in hard . Now, how many questions do you want`);
       }
     }).catch((error) => {
       let parameters = { // Custom parameters to pass with context
@@ -177,12 +177,12 @@ app.intent('SelectingCategory/ShowingDifficulty', (conv, { ordinal }) => {
       console.log("B", b);
       console.log("RESULTS 2", results);
       if (answers[ordinal - 1] === results[b - 1].correct_answer) {
-        var s = "That's a right answer . Next Question . ";
+        let s = "That's a right answer . Next Question . ";
         c++;
       }
 
-      else{
-        var s = "That's a wrong answer . Correct answer is . " + results[b - 1].correct_answer + " . Next question . ";
+      else {
+        let s = "That's a wrong answer . Correct answer is . " + results[b - 1].correct_answer + " . Next question . ";
       }
       while (a < 3) {
         answers[random[a]] = results[b].incorrect_answers[a];
@@ -197,6 +197,8 @@ app.intent('SelectingCategory/ShowingDifficulty', (conv, { ordinal }) => {
         a++;
       }
       b++;
+      str=he.decode(str);
+      str=ssval.correct(str);
       repeat='<speak>' + str + '</speak>';
       str=s+str;
       str=he.decode(str);
@@ -210,15 +212,15 @@ app.intent('SelectingCategory/ShowingDifficulty', (conv, { ordinal }) => {
       };
       conv.contexts.set('sessions', 30, parameters);
       if (answers[ordinal - 1] === results[b - 1].correct_answer) {
-        var k= "That's a right answer . ";
+        let k = "That's a right answer . ";
         c++;
       }
       else {
-        var k= "That's a wrong answer . ";
-        k +="Correct answer is . " + results[b - 1].correct_answer;
+        let k = "That's a wrong answer . ";
+        k += "Correct answer is . " + results[b - 1].correct_answer;
       }
-      repeat=str;
-      str= k + str;
+      repeat = str;
+      str = k + str;
       str += ` . Well played . Your score is ${c} out of ${no} . Do you want to play another session ?`;
       return conv.ask(str);
     }
@@ -250,18 +252,18 @@ app.intent('SelectingDifficulty/ShowingQuestions', (conv, { Type }) => {
         a++;
       }
       answers[random[3]] = data[0].correct_answer;
-      str +="Here's your first question . ";
-      str +=data[0].question;
+      str += "Here's your first question . ";
+      str += data[0].question;
       console.log("ANSWERS", answers);
       a = 0;
       while (a < 4) {
         str += `<say-as interpret-as="ordinal">${(a + 1)}</say-as>. ${answers[a]} . `;
         a++;
       }
-      str +="Say like first or second to select an option ";
-      str=he.decode(str);
-      str=ssval.correct(str);
-      repeat='<speak>' + str + '</speak>';
+      str += "Say like first or second to select an option ";
+      str = he.decode(str);
+      str = ssval.correct(str);
+      repeat = '<speak>' + str + '</speak>';
       return conv.ask('<speak>' + str + '</speak>');
 
     }).catch((error) => {
