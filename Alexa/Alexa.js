@@ -8,7 +8,6 @@ var ssval = require('ssml-validator');
 var name_arr = [];
 var repeat = '';
 var a;
-var c = 0;
 var b = 1;
 var id;
 var type;
