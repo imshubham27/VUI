@@ -218,10 +218,10 @@ app.intent('SelectingCategory/ShowingDifficulty', (conv, { ordinal }) => {
       else {
         let k = "That's a wrong answer . ";
         k += "Correct answer is . " + results[b - 1].correct_answer;
-      }
-      repeat = str;
-      str = k + str;
-      str += ` . Well played . Your score is ${c} out of ${no} . Do you want to play another session ?`;
+      }  
+      str = ` . Well played . Your score is ${c} out of ${no} . Do you want to play another session ?`;
+      repeat=str;
+      str=k+str
       return conv.ask(str);
     }
   }
