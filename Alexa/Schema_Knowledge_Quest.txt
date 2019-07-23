@@ -1,0 +1,131 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "knowledge quest",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "MoreIntent",
+                    "slots": [],
+                    "samples": [
+                        "more",
+                        "what else",
+                        "anything else",
+                        "are there more",
+                        "other results",
+                        "more information",
+                        "tell me more",
+                        "show me more",
+                        "more results"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "NoOfQuestionsShowingCategory",
+                    "slots": [
+                        {
+                            "name": "number",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{number}"
+                    ]
+                },
+                {
+                    "name": "RepeatIntent",
+                    "slots": [],
+                    "samples": [
+                        "please repeat that",
+                        "say it again",
+                        "come again",
+                        "repeat what you've just said",
+                        "say the same again",
+                        "repeat these results",
+                        "do it again",
+                        "could you repeat that",
+                        "repeat it",
+                        "repeat"
+                    ]
+                },
+                {
+                    "name": "SelectingCategoryShowingDifficulty",
+                    "slots": [
+                        {
+                            "name": "ordinal",
+                            "type": "AMAZON.Ordinal"
+                        }
+                    ],
+                    "samples": [
+                        "select {ordinal}",
+                        "{ordinal} one",
+                        "{ordinal} option",
+                        "the {ordinal} one",
+                        "the {ordinal} option",
+                        "{ordinal}"
+                    ]
+                },
+                {
+                    "name": "SelectingDifficultyShowingQuestions",
+                    "slots": [
+                        {
+                            "name": "Type",
+                            "type": "type"
+                        }
+                    ],
+                    "samples": [
+                        "{Type}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "type",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "hard"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "medium"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "easy"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

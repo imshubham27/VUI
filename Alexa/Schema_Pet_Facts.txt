@@ -1,0 +1,144 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "pet facts",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "PetFact",
+                    "slots": [
+                        {
+                            "name": "type",
+                            "type": "Type"
+                        }
+                    ],
+                    "samples": [
+                        "{type}"
+                    ]
+                },
+                {
+                    "name": "Gettingnumber",
+                    "slots": [
+                        {
+                            "name": "number",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{number}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "RepeatIntent",
+                    "slots": [],
+                    "samples": [
+                        "please repeat that",
+                        "say it again",
+                        "come again",
+                        "repeat what you've just said",
+                        "say the same again",
+                        "repeat these results",
+                        "do it again",
+                        "could you repeat that",
+                        "repeat it",
+                        "repeat"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "Type",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "cats"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dogs"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cat fact"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cat facts"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dog facts "
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a dog"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cat"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a cat"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a cat fact"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dog"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a dog fact"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dog fact"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
