@@ -8,6 +8,7 @@ var ssval = require('ssml-validator');
 var name_arr = [];
 var repeat = '';
 var a;
+var c = 0;
 var b = 1;
 var id;
 var type;
@@ -36,7 +37,7 @@ exports.handler = function (event, context) {
     }
 
     else if (request.type === "IntentRequest") {
-      if (request.intent.name === "AMAZON.RepeatIntent") {
+      if (request.intent.name === "RepeatIntent") {
         let options = {};
         options.session = session;
         console.log("I AM IN REPEATINTENT");
@@ -83,7 +84,8 @@ exports.handler = function (event, context) {
           no = request.intent.slots.number.value;
           console.log("DATA", data);
           a = 0;
-          str = "Select one category";
+          str += "Say like first or second to select a category . ";
+          str += "Choose one category";
           while (a < data.trivia_categories.length) {
             dict[`${data.trivia_categories[a].name}`] = `${data.trivia_categories[a].id}`;
             name_arr[a] = data.trivia_categories[a].name;
@@ -94,7 +96,6 @@ exports.handler = function (event, context) {
           // console.log("STRING", str);
           // console.log("NAME ARRAY", name_arr);
           // console.log("DICT", dict);
-          str += "Say like first or second to select a category";
           str = ssval.correct(str);
           options.speechText = str;
           repeat = str;
@@ -312,6 +313,7 @@ exports.handler = function (event, context) {
               a++;
             }
             answers[random[3]] = data[0].correct_answer;
+            str += "Say like first or second to select an option ";
             str += "Here's your first question . ";
             str += data[0].question;
             console.log("ANSWERS", answers);
@@ -320,7 +322,6 @@ exports.handler = function (event, context) {
               str += `<say-as interpret-as="ordinal">${(a + 1)}</say-as>. ${answers[a]} . `;
               a++;
             }
-            str += "Say like first or second to select an option ";
             str = he.decode(str);
             str = ssval.correct(str);
             options.speechText = str;
@@ -342,13 +343,6 @@ exports.handler = function (event, context) {
         }
       }
 
-      else if (request.intent.name === "RepeatIntent") {
-        let options = {};
-        options.session = session;
-        options.speechText = repeat;
-        options.endSession = false;
-        context.succeed(buildResponse(options));
-      }
     }
 
     else if (request.type === "SessionEndRequest") {
@@ -478,11 +472,3 @@ const getQues = () => {
     });
   });
 };
-
-
-
-
-
-
-
-
