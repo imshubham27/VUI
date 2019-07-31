@@ -41,7 +41,7 @@ exports.handler = function (event, context) {
                 let options = {};
                 options.session = session;
                 console.log("I AM IN ASK SCHEDULE INTENT");
-                options.speechText = "Good bye . have a nice day";
+                options.speechText = "If you loved our facts, you can leave a five star review in the alexa store";
                 delete options.session.attributes;
                 options.endSession = true;
                 context.succeed(buildResponse(options));
@@ -85,6 +85,7 @@ exports.handler = function (event, context) {
                 let options = {};
                 options.session = session;
                 no = request.intent.slots.number.value;
+
                 if (session.attributes.Petfact) {
                     let str = '';
                     var c = 0;
