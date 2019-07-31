@@ -49,7 +49,7 @@ exports.handler = function (event, context) {
         let options = {};
         options.session = session;
         console.log("I AM IN ASK SCHEDULE INTENT");
-        options.speechText = "Good bye . have a nice day";
+        options.speechText = "Thanks for playing. If you had fun, please leave a five-star review in the Alexa store.";
         delete options.session.attributes;
         options.endSession = true;
         context.succeed(buildResponse(options));
