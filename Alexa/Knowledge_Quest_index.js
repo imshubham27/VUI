@@ -48,7 +48,7 @@ exports.handler = function (event, context) {
       else if (request.intent.name === "AMAZON.StopIntent") {
         let options = {};
         options.session = session;
-        console.log("I AM IN ASK SCHEDULE INTENT");
+        console.log("I AM IN STOP INTENT");
         options.speechText = "Thanks for playing. If you had fun, please leave a five-star review in the Alexa store.";
         delete options.session.attributes;
         options.endSession = true;
@@ -78,14 +78,15 @@ exports.handler = function (event, context) {
         let options = {};
         options.session = session;
         no = request.intent.slots.number.value;
+        console.log("NUMBERS",no);
         let str = '';
         return getCall().then((data) => {
           options.session.attributes.NoOfQuestions = true;
           no = request.intent.slots.number.value;
           console.log("DATA", data);
           a = 0;
-          str += "Say like first or second to select a category . ";
-          str += "Choose one category";
+          str += "Say like first or second in ordinal manner to select a category of your choice . ";
+          str += "Categories are";
           while (a < data.trivia_categories.length) {
             dict[`${data.trivia_categories[a].name}`] = `${data.trivia_categories[a].id}`;
             name_arr[a] = data.trivia_categories[a].name;
@@ -182,6 +183,7 @@ exports.handler = function (event, context) {
             if (name_arr[a] !== undefined) {
               str += "Say more to listen to more categories";
             }
+            str +="To select a category, say the ordinal number";
             str = ssval.correct(str);
             console.log("STR", str);
             options.speechText = str;
@@ -313,7 +315,7 @@ exports.handler = function (event, context) {
               a++;
             }
             answers[random[3]] = data[0].correct_answer;
-            str += "Say like first or second to select an option ";
+            str += "Say like first or second in ordinal manner to select an answer of your choice ";
             str += "Here's your first question . ";
             str += data[0].question;
             console.log("ANSWERS", answers);
